@@ -1,42 +1,63 @@
-﻿using System.Windows.Input;
+﻿using ProvaLuquinha.Services;
+using System.Windows.Input;
+using ProvaLuquinha.Models;
+using ProvaLuquinha.Services;
+using ProvaLuquinha.Views;
+using System.Windows.Input;
 
 namespace ProvaLuquinha.ViewModels
 {
-    public class UsuarioViewModel
+    public class UsuarioViewModel : BaseViewModel
     {
         //Importar a camada de Service
         //using Nome_Projeto.Services;
 
         //Instanciar a nossa camada de serviço
-        CarroService carroService = new CarroService();
+        UsuarioService carroService = new UsuarioService();
 
         //Precisamos herdar da classe BaseViewModel
 
         //Agora iremos implementar as propriedades dos campos que poderao ser usados em tela
         //Geralmente seguimos os atributos da classe referenciada, no caso a classe Carro
         //Mias conhecido como encapsulamento
-        private string _marca;
+        private string _nome;
 
-        public string Marca
+        public string Nome
         {
-            get { return _marca; }
-            set { _marca = value; OnPropertyChanged(); }
+            get { return _nome; }
+            set { _nome = value; OnPropertyChanged(); }
         }
 
-        private string _modelo;
+        private string _cpf;
 
-        public string Modelo
+        public string CPF
         {
-            get { return _modelo; }
-            set { _modelo = value; OnPropertyChanged(); }
+            get { return _cpf; }
+            set { _cpf = value; OnPropertyChanged(); }
         }
 
-        private string _cor;
+        private string _email;
 
-        public string Cor
+        public string Email
         {
-            get { return _cor; }
-            set { _cor = value; OnPropertyChanged(); }
+            get { return _email; }
+            set { _email = value; OnPropertyChanged(); }
+        }
+
+        private string _senha;
+
+        public string Senha
+        {
+            get { return _senha; }
+            set { _senha = value; OnPropertyChanged(); }
+        }
+
+        private string _datanasc;
+
+        public string DataNasc
+        {
+            get { return _datanasc; }
+            set { _datanasc = value; OnPropertyChanged(); }
         }
 
         //Precisamos criar as telas envolvidas
@@ -48,10 +69,12 @@ namespace ProvaLuquinha.ViewModels
 
         void Cadastrar()
         {
-            Carro carro = new Carro();
-            carro.Marca = Marca;
-            carro.Modelo = Modelo;
-            carro.Cor = Cor;
+            Usuario usuario = new Usuario();
+            usuario.Nome = Nome;
+            usuario.CPF = CPF;
+            usuario.Email = Email;
+            usuario.Senha = Senha;
+            usuario.DataNasc = DataNasc;
 
             //Agora iremos chamar o método Adicionar da classe de serviço
             carroService.Adicionar(carro);
