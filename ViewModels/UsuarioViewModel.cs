@@ -99,24 +99,54 @@ namespace ProvaLuquinha.ViewModels
             DataNasc = usuario.DataNasc;
         }
 
+        // Atualização de cadastro
         public ICommand AtualizarCommand { get; set; }
 
-        void Atualizar()
+       void Atualizar()
         {
-            Usuario usuario = new Usuario();
-            usuario.Nome = Nome;
-            usuario.CPF = CPF;
-            usuario.Email = Email;
-            usuario.Senha = Senha;
-            usuario.DataNasc = DataNasc;
-
-            //Agora iremos chamar o método Adicionar da classe de serviço
-            usuarioService.Adicionar(usuario);
-
-            //Iremos abrir a tela de visualização
-            AbrirView(new UsuarioCadastroView());
+            Consultar();
+            AbrirView(new UsuarioCadastroView);
         }
 
+
+        // Validação (login) por Email e Senha
+        public ICommand ValidarCommand { get; set; }
+
+        private async void Validar()
+        {
+            var usuarioExistente = usuarioService.Consultar();
+
+            if(usuarioExistente != null && usuarioExistente.Email == Email && usuarioExistente.Senha == Senha)
+            {
+                AbrirView(new PgPrincipalView());
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Erro", "Email ou senha invalido", "Ok");
+            }
+        }
+
+        private async void Salvar()
+        {
+            if(string.IsNullOrWhiteSpace(Nome) || string.IsNullOrWhiteSpace(CPF) ||string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Senha) || string.IsNullOrWhiteSpace(DataNasc))
+            {
+                await Application.Current.MainPage.DisplayAlert("Erro", "Preencha todos os campos obrigatorios.", "Ok");
+                return;
+            }
+
+            Usuario usuario = new Usuario
+            {
+                Nome = Nome,
+                CPF = CPF,
+                Email = Email,
+                Senha = Senha,
+                DataNasc = DataNasc
+            };
+
+            usuarioService.Adicionar(usuario);
+            await Application.Current.MainPage.DisplayAlert("Sucesso", "Cadastro salvo com sucesso", "Ok");
+            await Application.Current.MainPage.Navigation.PopAsync();
+        }
 
 
         //Iremos vincular os métodos aos commands
@@ -124,6 +154,7 @@ namespace ProvaLuquinha.ViewModels
         {
             CadastrarCommand = new Command(Cadastrar);
             ConsultarCommand = new Command(Consultar);
+            ValidarCommand = new Command(Consultar);
             AtualizarCommand = new Command(Atualizar);
         }
 

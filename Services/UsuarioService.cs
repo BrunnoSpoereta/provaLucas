@@ -16,5 +16,7 @@ namespace ProvaLuquinha.Services
         {
             return dbSingleton.Usuario;
         }
+
+
     }
 }
