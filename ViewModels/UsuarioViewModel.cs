@@ -80,7 +80,7 @@ namespace ProvaLuquinha.ViewModels
             usuarioService.Adicionar(usuario);
 
             //Iremos abrir a tela de visualização
-            AbrirView(new UsuarioCadastro());
+            AbrirView(new UsuarioCadastroView());
         }
 
         //Iremos implementar a rotina de consulta
@@ -99,11 +99,32 @@ namespace ProvaLuquinha.ViewModels
             DataNasc = usuario.DataNasc;
         }
 
+        public ICommand AtualizarCommand { get; set; }
+
+        void Atualizar()
+        {
+            Usuario usuario = new Usuario();
+            usuario.Nome = Nome;
+            usuario.CPF = CPF;
+            usuario.Email = Email;
+            usuario.Senha = Senha;
+            usuario.DataNasc = DataNasc;
+
+            //Agora iremos chamar o método Adicionar da classe de serviço
+            usuarioService.Adicionar(usuario);
+
+            //Iremos abrir a tela de visualização
+            AbrirView(new UsuarioCadastroView());
+        }
+
+
+
         //Iremos vincular os métodos aos commands
         public UsuarioViewModel()
         {
             CadastrarCommand = new Command(Cadastrar);
             ConsultarCommand = new Command(Consultar);
+            AtualizarCommand = new Command(Atualizar);
         }
 
     }
