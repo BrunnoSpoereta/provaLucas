@@ -3,10 +3,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProvaLuquinha.Views.UsuarioLoginView"
              Title="UsuarioLoginView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="15">
+
+            <Label Text="Login"
+               FontSize="34"
+               HorizontalTextAlignment="Center"
+               FontAttributes="Bold"
+               />
+
+            <StackLayout Spacing="10">
+                <Label Text="Email:" FontSize="16"/>
+                <Entry Text="{Binding Email}"
+                   Placeholder="Digite seu email"
+                   Keyboard="Email"/>
+
+                <Label Text="Senha:" FontSize="16"/>
+                <Entry Text="{Binding Senha}"
+                   Placeholder="Digite sua senha"
+                   IsPassword="True"/>
+            </StackLayout>
+
+            <StackLayout Spacing="10" Margin="0,20,0,0">
+                <Button Text="Entrar"
+                    Command="{Binding ValidarCommand}"
+                    TextColor="White"
+                    FontSize="16"/>
+
+                <Button Text="Cadastrar-se"
+                    Command="{Binding CadastrarCommand}"
+                    BackgroundColor="Gray"
+                    TextColor="White"
+                    FontSize="16"/>
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

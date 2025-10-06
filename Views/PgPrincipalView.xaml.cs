@@ -1,4 +1,5 @@
 namespace ProvaLuquinha.Views;
+using ProvaLuquinha.ViewModels;
 
 public partial class PgPrincipalView : ContentPage
 {
@@ -6,4 +7,15 @@ public partial class PgPrincipalView : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        
+        if (BindingContext is UsuarioViewModel viewModel)
+        {
+            viewModel.Consultar();
+        }
+    }
 }

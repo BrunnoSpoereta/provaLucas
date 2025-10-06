@@ -3,10 +3,61 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProvaLuquinha.Views.PgPrincipalView"
              Title="PgPrincipalView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="20">
+
+            <Label Text="Bem-vindo!"
+               FontSize="32"
+               HorizontalTextAlignment="Center"
+               FontAttributes="Bold"
+               
+
+            <Label Text="{Binding Nome, StringFormat='Olá, {0}!'}"
+               FontSize="20"
+               HorizontalTextAlignment="Center"
+               
+
+            <StackLayout Spacing="15" Margin="0,30,0,0">
+                <Button Text="Atualizar Dados"
+                    Command="{Binding AtualizarCommand}"
+                    BackgroundColor="Orange"
+                    TextColor="White"
+                    FontSize="16"/>
+
+                <Button Text="Visualizar Dados"
+                    Command="{Binding VisualizarCommand}"
+                    BackgroundColor="Blue"
+                    TextColor="White"
+                    FontSize="16"/>
+            </StackLayout>
+
+            
+            <StackLayout IsVisible="{Binding DadosVisiveis}" 
+                     Spacing="10" 
+                     Margin="0,20,0,0"
+                     BackgroundColor="LightGray"
+                     Padding="15">
+
+                <Label Text="Seus Dados:"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="DarkBlue"/>
+
+                <Label Text="{Binding Nome, StringFormat='Nome: {0}'}"
+                   FontSize="16"/>
+
+                <Label Text="{Binding CPF, StringFormat='CPF: {0}'}"
+                   FontSize="16"/>
+
+                <Label Text="{Binding Email, StringFormat='Email: {0}'}"
+                   FontSize="16"/>
+
+                <Label Text="{Binding DataNasc, StringFormat='Data de Nascimento: {0}'}"
+                   FontSize="16"/>
+
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
 </ContentPage>
