@@ -13,7 +13,7 @@ namespace ProvaLuquinha.ViewModels
         //using Nome_Projeto.Services;
 
         //Instanciar a nossa camada de serviço
-        UsuarioService carroService = new UsuarioService();
+        UsuarioService usuarioService = new UsuarioService();
 
         //Precisamos herdar da classe BaseViewModel
 
@@ -77,10 +77,10 @@ namespace ProvaLuquinha.ViewModels
             usuario.DataNasc = DataNasc;
 
             //Agora iremos chamar o método Adicionar da classe de serviço
-            carroService.Adicionar(carro);
+            usuarioService.Adicionar(usuario);
 
             //Iremos abrir a tela de visualização
-            AbrirView(new CarroVisualizacaoView());
+            AbrirView(new UsuarioCadastro());
         }
 
         //Iremos implementar a rotina de consulta
@@ -89,16 +89,18 @@ namespace ProvaLuquinha.ViewModels
         public void Consultar()
         {
             //Instanciar o objeto carro para recuperar o registro cadastro e atribuir o cadastro salvo
-            Carro carro = carroService.Consultar();
+            Usuario usuario = usuarioService.Consultar();
 
             //Iremos popular as propriedades com o objeto
-            Marca = carro.Marca;
-            Modelo = carro.Modelo;
-            Cor = carro.Cor;
+            Nome = usuario.Nome;
+            CPF = usuario.CPF;
+            Email = usuario.Email;
+            Senha = usuario.Senha;
+            DataNasc = usuario.DataNasc;
         }
 
         //Iremos vincular os métodos aos commands
-        public CarroViewModel()
+        public UsuarioViewModel()
         {
             CadastrarCommand = new Command(Cadastrar);
             ConsultarCommand = new Command(Consultar);
