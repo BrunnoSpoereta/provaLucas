@@ -67,7 +67,7 @@ namespace ProvaLuquinha.ViewModels
         //Iremos implementar a rotina de cadastro
         public ICommand CadastrarCommand { get; set; }
 
-        void Cadastrar()
+        private async void Cadastrar()
         {
             Usuario usuario = new Usuario();
             usuario.Nome = Nome;
@@ -78,8 +78,18 @@ namespace ProvaLuquinha.ViewModels
 
             //Agora iremos chamar o método Adicionar da classe de serviço
             usuarioService.Adicionar(usuario);
+            await Application.Current.MainPage.DisplayAlert("Sucesso", "Cadastro realizado com Sucesso", "Ok");
+
+
 
             //Iremos abrir a tela de visualização
+            AbrirView(new UsuarioLoginView());
+        }
+
+        public ICommand RegistrarCommand { get; set; }
+
+        private void Registrar()
+        {
             AbrirView(new UsuarioCadastroView());
         }
 
@@ -159,6 +169,7 @@ namespace ProvaLuquinha.ViewModels
             ValidarCommand = new Command(Validar);
             AtualizarCommand = new Command(Atualizar);
             SalvarCommand = new Command(Salvar);
+            RegistrarCommand = new Command(Registrar);
         }
 
     }
