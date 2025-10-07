@@ -107,6 +107,7 @@ namespace ProvaLuquinha.ViewModels
             Email = usuario.Email;
             Senha = usuario.Senha;
             DataNasc = usuario.DataNasc;
+            
         }
 
         // Atualização de cadastro

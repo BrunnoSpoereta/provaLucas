@@ -2,7 +2,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProvaLuquinha.Views.PgPrincipalView"
+             xmlns:viewmodel="clr-namespace:ProvaLuquinha.ViewModels"
              Title="PgPrincipalView">
+
+
+    <ContentPage.BindingContext>
+        <viewmodel:UsuarioViewModel/>
+    </ContentPage.BindingContext>
 
     <ScrollView>
         <StackLayout Padding="20" Spacing="20">
