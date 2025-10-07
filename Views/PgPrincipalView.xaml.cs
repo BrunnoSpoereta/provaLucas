@@ -3,19 +3,10 @@ using ProvaLuquinha.ViewModels;
 
 public partial class PgPrincipalView : ContentPage
 {
-	public PgPrincipalView()
-	{
-		InitializeComponent();
-	}
-
-    protected override void OnAppearing()
+    public PgPrincipalView()
     {
-        base.OnAppearing();
-
-        
-        if (BindingContext is UsuarioViewModel viewModel)
-        {
-            viewModel.Consultar();
-        }
+        InitializeComponent();
+        // Instanciar o ViewModel no code-behind para ter controle sobre quando os dados são carregados
+        BindingContext = new UsuarioViewModel();
     }
 }
