@@ -32,7 +32,7 @@
                     FontSize="16"/>
 
                 <Button Text="Visualizar Dados"
-                    Command="{Binding VisualizarCommand}"
+                    Command="{Binding ConsultarCommand}"
                     BackgroundColor="Blue"
                     TextColor="White"
                     FontSize="16"/>

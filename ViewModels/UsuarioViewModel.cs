@@ -107,6 +107,10 @@ namespace ProvaLuquinha.ViewModels
             Email = usuario.Email;
             Senha = usuario.Senha;
             DataNasc = usuario.DataNasc;
+
+            var cadastroView = new UsuarioCadastroView();
+            cadastroView.BindingContext = this;
+            AbrirView(cadastroView);
             
         }
 
