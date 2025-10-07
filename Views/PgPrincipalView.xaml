@@ -10,13 +10,13 @@
             <Label Text="Bem-vindo!"
                FontSize="32"
                HorizontalTextAlignment="Center"
-               FontAttributes="Bold"
-               
+               FontAttributes="Bold"/>
+
 
             <Label Text="{Binding Nome, StringFormat='Olá, {0}!'}"
                FontSize="20"
-               HorizontalTextAlignment="Center"
-               
+               HorizontalTextAlignment="Center"/>
+
 
             <StackLayout Spacing="15" Margin="0,30,0,0">
                 <Button Text="Atualizar Dados"

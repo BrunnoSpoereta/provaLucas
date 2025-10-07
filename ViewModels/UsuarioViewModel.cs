@@ -105,7 +105,7 @@ namespace ProvaLuquinha.ViewModels
        void Atualizar()
         {
             Consultar();
-            AbrirView(new UsuarioCadastroView);
+            AbrirView(new UsuarioCadastroView());
         }
 
 
@@ -125,6 +125,8 @@ namespace ProvaLuquinha.ViewModels
                 await Application.Current.MainPage.DisplayAlert("Erro", "Email ou senha invalido", "Ok");
             }
         }
+
+        public ICommand SalvarCommand { get; set; }
 
         private async void Salvar()
         {
@@ -154,8 +156,9 @@ namespace ProvaLuquinha.ViewModels
         {
             CadastrarCommand = new Command(Cadastrar);
             ConsultarCommand = new Command(Consultar);
-            ValidarCommand = new Command(Consultar);
+            ValidarCommand = new Command(Validar);
             AtualizarCommand = new Command(Atualizar);
+            SalvarCommand = new Command(Salvar);
         }
 
     }
