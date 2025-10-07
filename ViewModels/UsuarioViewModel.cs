@@ -27,7 +27,7 @@ namespace ProvaLuquinha.ViewModels
         //Agora iremos implementar as propriedades dos campos que poderao ser usados em tela
         //Geralmente seguimos os atributos da classe referenciada, no caso a classe Carro
         //Mias conhecido como encapsulamento
-        private string _nome;
+        private string _nome = string.Empty;
 
         public string Nome
         {
@@ -35,7 +35,7 @@ namespace ProvaLuquinha.ViewModels
             set { _nome = value; OnPropertyChanged(); }
         }
 
-        private string _cpf;
+        private string _cpf = string.Empty;
 
         public string CPF
         {
@@ -43,7 +43,7 @@ namespace ProvaLuquinha.ViewModels
             set { _cpf = value; OnPropertyChanged(); }
         }
 
-        private string _email;
+        private string _email = string.Empty;
 
         public string Email
         {
@@ -51,7 +51,7 @@ namespace ProvaLuquinha.ViewModels
             set { _email = value; OnPropertyChanged(); }
         }
 
-        private string _senha;
+        private string _senha = string.Empty;
 
         public string Senha
         {
@@ -59,7 +59,7 @@ namespace ProvaLuquinha.ViewModels
             set { _senha = value; OnPropertyChanged(); }
         }
 
-        private string _datanasc;
+        private string _datanasc = string.Empty;
 
         public string DataNasc
         {
@@ -87,8 +87,6 @@ namespace ProvaLuquinha.ViewModels
             usuarioService.Adicionar(usuario);
             await Application.Current.MainPage.DisplayAlert("Sucesso", "Cadastro realizado com Sucesso", "Ok");
 
-
-
             //Iremos abrir a tela de visualização
             AbrirView(new UsuarioLoginView());
         }
@@ -108,14 +106,23 @@ namespace ProvaLuquinha.ViewModels
             //Instanciar o objeto carro para recuperar o registro cadastro e atribuir o cadastro salvo
             Usuario usuario = usuarioService.Consultar();
 
-            //Iremos popular as propriedades com o objeto
-            Nome = usuario.Nome;
-            CPF = usuario.CPF;
-            Email = usuario.Email;
-            Senha = usuario.Senha;
-            DataNasc = usuario.DataNasc;
+            if (usuario != null)
+            {
+                //Iremos popular as propriedades com o objeto
+                Nome = usuario.Nome;
+                CPF = usuario.CPF;
+                Email = usuario.Email;
+                Senha = usuario.Senha;
+                DataNasc = usuario.DataNasc;
 
-            DadosVisiveis = true;
+                // Alternar a visibilidade dos dados
+                DadosVisiveis = !DadosVisiveis;
+            }
+            else
+            {
+                // Se não há usuário cadastrado, apenas oculta os dados
+                DadosVisiveis = false;
+            }
         }
 
         // Atualização de cadastro
@@ -123,10 +130,18 @@ namespace ProvaLuquinha.ViewModels
 
        void Atualizar()
        {
-            Consultar();
+            // Carrega os dados sem alterar a visibilidade
+            Usuario usuario = usuarioService.Consultar();
+            if (usuario != null)
+            {
+                Nome = usuario.Nome;
+                CPF = usuario.CPF;
+                Email = usuario.Email;
+                Senha = usuario.Senha;
+                DataNasc = usuario.DataNasc;
+            }
             AbrirView(new UsuarioCadastroView());
        }
-
 
         // Validação (login) por Email e Senha
         public ICommand ValidarCommand { get; set; }
@@ -169,7 +184,6 @@ namespace ProvaLuquinha.ViewModels
             await Application.Current.MainPage.Navigation.PopAsync();
         }
 
-
         //Iremos vincular os métodos aos commands
         public UsuarioViewModel()
         {
@@ -178,7 +192,10 @@ namespace ProvaLuquinha.ViewModels
             ValidarCommand = new Command(Validar);
             AtualizarCommand = new Command(Atualizar);
             SalvarCommand = new Command(Salvar);
-            RegistrarCommand = new Command(Registrar);
+            RegistrarCommand = new Command(Registrar);  
+            
+            // Garantir que os dados começam ocultos
+            DadosVisiveis = false;
         }
 
     }
