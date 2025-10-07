@@ -107,21 +107,16 @@ namespace ProvaLuquinha.ViewModels
             Email = usuario.Email;
             Senha = usuario.Senha;
             DataNasc = usuario.DataNasc;
-
-            var cadastroView = new UsuarioCadastroView();
-            cadastroView.BindingContext = this;
-            AbrirView(cadastroView);
-            
         }
 
         // Atualização de cadastro
         public ICommand AtualizarCommand { get; set; }
 
        void Atualizar()
-        {
+       {
             Consultar();
             AbrirView(new UsuarioCadastroView());
-        }
+       }
 
 
         // Validação (login) por Email e Senha
