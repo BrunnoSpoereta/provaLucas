@@ -38,7 +38,7 @@
                     FontSize="16"/>
             </StackLayout>
 
-            
+
             <StackLayout IsVisible="{Binding DadosVisiveis}" 
                      Spacing="10" 
                      Margin="0,20,0,0"
@@ -61,7 +61,6 @@
 
                 <Label Text="{Binding DataNasc, StringFormat='Data de Nascimento: {0}'}"
                    FontSize="16"/>
-
             </StackLayout>
 
         </StackLayout>

@@ -15,6 +15,13 @@ namespace ProvaLuquinha.ViewModels
         //Instanciar a nossa camada de serviço
         UsuarioService usuarioService = new UsuarioService();
 
+        private bool _dadosVisiveis = false;
+        public bool DadosVisiveis
+        {
+            get { return _dadosVisiveis; }
+            set { _dadosVisiveis = value; OnPropertyChanged(); }
+        }
+
         //Precisamos herdar da classe BaseViewModel
 
         //Agora iremos implementar as propriedades dos campos que poderao ser usados em tela
@@ -107,6 +114,8 @@ namespace ProvaLuquinha.ViewModels
             Email = usuario.Email;
             Senha = usuario.Senha;
             DataNasc = usuario.DataNasc;
+
+            DadosVisiveis = true;
         }
 
         // Atualização de cadastro
