@@ -126,6 +126,8 @@ namespace ProvaLuquinha.ViewModels
             }
         }
 
+        public ICommand SalvarCommand { get; set; }
+
         private async void Salvar()
         {
             if(string.IsNullOrWhiteSpace(Nome) || string.IsNullOrWhiteSpace(CPF) ||string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Senha) || string.IsNullOrWhiteSpace(DataNasc))
@@ -154,8 +156,9 @@ namespace ProvaLuquinha.ViewModels
         {
             CadastrarCommand = new Command(Cadastrar);
             ConsultarCommand = new Command(Consultar);
-            ValidarCommand = new Command(Consultar);
+            ValidarCommand = new Command(Validar);
             AtualizarCommand = new Command(Atualizar);
+            SalvarCommand = new Command(Salvar);
         }
 
     }
