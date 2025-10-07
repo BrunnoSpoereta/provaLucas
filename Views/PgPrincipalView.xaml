@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProvaLuquinha.Views.PgPrincipalView"
              xmlns:viewmodel="clr-namespace:ProvaLuquinha.ViewModels"
-             Title="PgPrincipalView">
+             Title="Página Principal">
 
 
     <ContentPage.BindingContext>
@@ -19,19 +19,23 @@
                FontAttributes="Bold"/>
 
 
-            <Label Text="{Binding Nome, StringFormat='Olá, {0}!'}"
+            <Label Text="{Binding Nome, StringFormat='Olá, {0}!'}"      
                FontSize="20"
-               HorizontalTextAlignment="Center"/>
+               HorizontalTextAlignment="Center"
+               />
 
 
             <StackLayout Spacing="15" Margin="0,30,0,0">
+
                 <Button Text="Atualizar Dados"
                     Command="{Binding AtualizarCommand}"
+                    
                     TextColor="White"
                     FontSize="16"/>
-
+                
                 <Button Text="Visualizar Dados"
                     Command="{Binding ConsultarCommand}"
+                    
                     TextColor="White"
                     FontSize="16"/>
             </StackLayout>
@@ -41,6 +45,7 @@
             <StackLayout IsVisible="{Binding DadosVisiveis}" 
                      Spacing="10" 
                      Margin="0,20,0,0"
+                     
                      Padding="15">
 
                 <Label Text="Seus Dados:"

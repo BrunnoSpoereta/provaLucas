@@ -98,6 +98,16 @@ namespace ProvaLuquinha.ViewModels
             AbrirView(new UsuarioCadastroView());
         }
 
+        //Método para carregar apenas o nome do usuário
+        private void CarregarNome()
+        {
+            Usuario usuario = usuarioService.Consultar();
+            if (usuario != null)
+            {
+                Nome = usuario.Nome;
+            }
+        }
+
         //Iremos implementar a rotina de consulta
         public ICommand ConsultarCommand { get; set; }
 
@@ -115,7 +125,7 @@ namespace ProvaLuquinha.ViewModels
                 Senha = usuario.Senha;
                 DataNasc = usuario.DataNasc;
 
-                // Alternar a visibilidade dos dados
+                // Alternar a visibilidade dos dados detalhados
                 DadosVisiveis = !DadosVisiveis;
             }
             else
@@ -194,9 +204,11 @@ namespace ProvaLuquinha.ViewModels
             SalvarCommand = new Command(Salvar);
             RegistrarCommand = new Command(Registrar);  
             
-            // Garantir que os dados começam ocultos
+            // Garantir que os dados detalhados começam ocultos
             DadosVisiveis = false;
+            
+            // Carregar apenas o nome do usuário ao inicializar
+            CarregarNome();
         }
-
     }
 }
