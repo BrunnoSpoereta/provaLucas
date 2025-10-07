@@ -105,7 +105,7 @@ namespace ProvaLuquinha.ViewModels
        void Atualizar()
         {
             Consultar();
-            AbrirView(new UsuarioCadastroView);
+            AbrirView(new UsuarioCadastroView());
         }
 
 
