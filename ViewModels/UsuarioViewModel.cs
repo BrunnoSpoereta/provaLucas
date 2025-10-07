@@ -131,6 +131,7 @@ namespace ProvaLuquinha.ViewModels
        void Atualizar()
        {
             // Carrega os dados sem alterar a visibilidade
+           // 
             Usuario usuario = usuarioService.Consultar();
             if (usuario != null)
             {
